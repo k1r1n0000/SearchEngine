@@ -21,19 +21,28 @@ bool ConverterJSON::LoadConfig(){
 
     if(!conf["config"]["name"].is_null() && conf["config"]["name"].is_string()){
         cf.config.name = conf["config"]["name"];
-    }else{
+    }else if (!conf["config"]["name"].is_string()) {
+        std::cerr << "Name must be a string!" << std::endl;
+        return false;
+    } else {
         cf.config.name = "Undefined";
     }
 
     if(!conf["config"]["version"].is_null() && conf["config"]["version"].is_string()) {
         cf.config.version = conf["config"]["version"];
-    }else{
+    } else if (!conf["config"]["version"].is_string()) {
+        std::cerr << "Version must be a string!" << std::endl;
+        return false;
+    } else {
         cf.config.version = "1.0";
     }
 
     if(!conf["config"]["max_responses"].is_null() && conf["config"]["max_responses"].is_number()){
         cf.config.max_responses = conf["config"]["max_responses"];
-    }else{
+    }else if (!conf["config"]["max_responses"].is_number()) {
+        std::cerr << "Max responses must be a number!" << std::endl;
+        return false;
+    } else {
         cf.config.max_responses = 5;
     }
 

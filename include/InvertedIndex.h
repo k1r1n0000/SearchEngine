@@ -48,7 +48,6 @@ private:
     * Метод индексирует документы
     */
     void indexTheFile(const std::string& fileContent, size_t docId);
-    static std::mutex mutexIndexMap;
     bool indexingIsOngoing{};
 };
 
